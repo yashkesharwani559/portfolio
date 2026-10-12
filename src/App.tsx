@@ -71,7 +71,14 @@ function App() {
   const profileFallbackImage = import.meta.env.BASE_URL + (theme === 'dark' ? 'profile-dark.svg' : 'profile-light.svg')
 
   return (
-    <div className="site-shell">
+    <div
+      className="site-shell"
+      onPointerMove={(event) => {
+        if (event.pointerType === 'touch') return
+        event.currentTarget.style.setProperty('--pointer-x', `${event.pageX}px`)
+        event.currentTarget.style.setProperty('--pointer-y', `${event.pageY}px`)
+      }}
+    >
       <div className="ambient ambient-one" aria-hidden="true" /><div className="ambient ambient-two" aria-hidden="true" />
       <header className="topbar">
         <a href="#home" className="brand" aria-label="Yash Kesharwani home" onClick={closeMenu}><span className="brand-mark">YK<span>.</span></span><span className="brand-copy">Yash Kesharwani<small>Software Engineer I</small></span></a>
