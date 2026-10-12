@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Award, Check, Code2, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sun, Terminal, X, GitBranch, Cpu, Layers3, BriefcaseBusiness, Sparkles, Send, FileText, BrainCircuit } from 'lucide-react'
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Award, Check, Code2, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sun, Terminal, X, GitBranch, Cpu, Layers3, BriefcaseBusiness, Send, FileText, BrainCircuit } from 'lucide-react'
 import data from './data/portfolio.json'
 
 type Theme = 'dark' | 'light'
@@ -19,6 +19,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeFilter, setActiveFilter] = useState('All')
   const [copied, setCopied] = useState(false)
+  const [avatarFailed, setAvatarFailed] = useState(false)
   const categories = useMemo(() => ['All', ...Array.from(new Set(data.projects.map((project) => project.category)))], [])
   const filteredProjects: Project[] = activeFilter === 'All' ? data.projects : data.projects.filter((project) => project.category === activeFilter)
 
@@ -38,6 +39,7 @@ function App() {
   }
   const closeMenu = () => setMenuOpen(false)
   const resumeUrl = import.meta.env.BASE_URL + 'Yash-Kesharwani-Resume.pdf'
+  const profileImage = import.meta.env.BASE_URL + (theme === 'dark' ? 'profile-dark.svg' : 'profile-light.svg')
 
   return (
     <div className="site-shell">
@@ -78,7 +80,12 @@ function App() {
               <div className="code-line indent double"><span className="code-yellow">'Backend systems'</span>,</div><div className="code-line indent double"><span className="code-yellow">'Cloud & automation'</span>,</div><div className="code-line indent double"><span className="code-yellow">'Clean code'</span></div>
               <div className="code-line indent">],</div><div className="code-line indent"><span className="code-green">learning</span>: <span className="code-purple">true</span>,</div><div className="code-line">{'}'}<span className="cursor">_</span></div>
             </div>
-            <div className="visual-footer"><div className="visual-footer-icon"><Terminal size={17} /></div><div><strong>Build · Automate · Improve</strong><span>Curious mind, engineering mindset.</span></div><Sparkles size={19} className="visual-sparkle" /></div>
+            <div className="visual-footer"><div className="visual-footer-icon"><Terminal size={17} /></div><div><strong>Build · Automate · Improve</strong><span>Curious mind, engineering mindset.</span></div><div className="visual-profile-avatar" role="img" aria-label="Demo profile avatar">
+                {!avatarFailed
+                  ? <img key={theme} src={profileImage} alt="Demo profile avatar" onError={() => setAvatarFailed(true)} />
+                  : <span className="avatar-fallback">YK</span>}
+                <span className="avatar-status" aria-hidden="true" />
+              </div></div>
             <div className="floating-chip chip-java"><span className="chip-icon">J</span><span><strong>Java + Spring</strong><small>Backend engineering</small></span></div>
             <div className="floating-chip chip-cloud"><span className="chip-icon cloud-icon"><Layers3 size={17} /></span><span><strong>Cloud & DevOps</strong><small>Automation first</small></span></div>
           </motion.div>
@@ -121,7 +128,50 @@ function App() {
         </div></section>
       </main>
 
-      <footer className="footer section-wrap"><a href="#home" className="brand footer-brand"><span className="brand-mark">YK<span>.</span></span><span className="brand-copy">Yash Kesharwani<small>Built with intention.</small></span></a><span className="footer-note">Built with React, TypeScript and a love for clean interfaces.</span><div className="footer-links"><a href={data.links.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a><a href={data.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a><a href={data.links.leetcode} target="_blank" rel="noreferrer" aria-label="LeetCode"><Code2 size={17} /></a><a href={resumeUrl} download aria-label="Download resume"><FileText size={17} /></a></div><span className="copyright">© {new Date().getFullYear()} Yash Kesharwani</span></footer>
+      <footer className="site-footer" id="footer">
+        <div className="footer-main section-wrap">
+          <div className="footer-brand-block">
+            <a href="#home" className="brand footer-brand" aria-label="Yash Kesharwani home">
+              <span className="brand-mark">YK<span>.</span></span>
+              <span className="brand-copy">Yash Kesharwani<small>Software Engineer I</small></span>
+            </a>
+            <p className="footer-intro">Building reliable software and practical automation, one improvement at a time.</p>
+            <div className="footer-socials" aria-label="Social profiles">
+              <a href={data.links.linkedin} target="_blank" rel="noreferrer" aria-label="LinkedIn"><Linkedin size={17} /></a>
+              <a href={data.links.github} target="_blank" rel="noreferrer" aria-label="GitHub"><Github size={17} /></a>
+              <a href={data.links.leetcode} target="_blank" rel="noreferrer" aria-label="LeetCode"><Code2 size={17} /></a>
+              <a href={data.links.email} aria-label="Email"><Mail size={17} /></a>
+            </div>
+          </div>
+          <nav className="footer-nav" aria-label="Footer navigation">
+            <h2>Explore</h2>
+            <div className="footer-nav-links">
+              <a href="#home">Home</a>
+              <a href="#work">Projects</a>
+              <a href="#experience">Experience</a>
+              <a href="#skills">Skills</a>
+              <a href="#about">About</a>
+              <a href="#education">Education</a>
+              <a href="#contact">Contact</a>
+            </div>
+          </nav>
+          <div className="footer-connect">
+            <h2>Connect</h2>
+            <a href={data.links.email}><Mail size={15} /> Email me</a>
+            <a href={data.links.linkedinMessage} target="_blank" rel="noreferrer"><Send size={15} /> Message on LinkedIn</a>
+            <a href={data.links.github} target="_blank" rel="noreferrer"><Github size={15} /> GitHub profile</a>
+            <a href={data.links.leetcode} target="_blank" rel="noreferrer"><Code2 size={15} /> LeetCode profile</a>
+            <a href={resumeUrl} download><Download size={15} /> Download resume</a>
+          </div>
+        </div>
+        <div className="footer-bottom">
+          <div className="section-wrap footer-bottom-inner">
+            <span>© {new Date().getFullYear()} Yash Kesharwani. All rights reserved.</span>
+            <span>Designed and built by Yash Kesharwani · React &amp; TypeScript</span>
+            <a href="#home" className="footer-back-top" aria-label="Back to top">↑</a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

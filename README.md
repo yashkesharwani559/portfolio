@@ -1,44 +1,92 @@
-# Yash Kesharwani - Developer Portfolio
+# Yash Kesharwani — Portfolio
 
-A responsive, recruiter-focused personal portfolio built with **Vite, React, TypeScript, Motion for React and Lucide**. It includes dark/light themes, filtered project cards, work history, skills, education, achievements, contact links and a resume download.
+A responsive portfolio built with **Vite, React, TypeScript, Motion for React and Lucide**. The existing visual design uses a dark/light theme toggle, project cards, a career timeline, skills, achievements, social links, resume download and contact actions.
 
-## Development
+**Live site:** https://yashkesharwani559.github.io/portfolio/  
+**Repository:** https://github.com/yashkesharwani559/portfolio
 
-Requires Node.js 22 or compatible with Vite 8.
+## Where to update the website
+
+Most content changes do not require editing React components.
+
+| What you want to change | File to edit |
+| --- | --- |
+| Name, professional title, email, location and profile links | `src/data/portfolio.json` |
+| Introduction and summary | `src/data/portfolio.json` |
+| Skills and technology lists | `src/data/portfolio.json` |
+| Cognizant and internship experience, dates and bullet points | `src/data/portfolio.json` |
+| Project names, descriptions, categories, tech stacks and GitHub URLs | `src/data/portfolio.json` |
+| Education, certifications and achievements | `src/data/portfolio.json` |
+| Project statistics / highlight cards | `src/data/portfolio.json` |
+| Demo profile avatar for dark mode | `public/profile-dark.svg` |
+| Demo profile avatar for light mode | `public/profile-light.svg` |
+| Footer wording, columns and links | Footer component in `src/App.tsx` |
+| Colors, spacing, responsive/mobile layout and theme styles | `src/styles.css` |
+| Page structure, buttons, navigation and interactions | `src/App.tsx` |
+| Automatic build and deployment | `.github/workflows/deploy.yml` |
+
+### Changing the profile image
+
+The home section currently uses two lightweight demo SVG avatars so the image changes when the site's dark/light theme changes. To use your own picture later, replace the relevant SVG with an image you own and update the `profileImage` assignment in `src/App.tsx` to point to the desired public file. A square 1:1 image works best. If an image fails to load, the UI displays the **YK** initials fallback.
+
+### Updating your downloadable resume
+
+The repository contains `public/Yash_Kesharwani_Resume.pdf`. Replace it with your new PDF using the same filename and commit the change. The deployment workflow copies it to the stable public download path, `Yash-Kesharwani-Resume.pdf`, so the site's Resume buttons do not need to change.
+
+If you rename the source PDF, also update the copy step in `.github/workflows/deploy.yml`.
+
+## Local development
+
+Use Node.js 22 or a compatible current Node.js version.
 
 ```bash
 npm install
 npm run dev
 ```
 
-Build for production:
+Create and inspect a production build locally:
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Update content in GitHub
+## Publishing changes
 
-- Edit `src/data/portfolio.json` to update the introduction, profile URLs, skill lists, experience, projects, education and achievements.
-- The workflow uses `public/Yash-Kesharwani-Resume.pdf` if you commit an official PDF there. If it is absent, it generates a downloadable resume from `scripts/generate_resume.py`. Update that script when resume details change.
-- Commit changes to `main`; GitHub Actions builds the Vite app and publishes it to GitHub Pages.
+The live site is published with **GitHub Pages**. The workflow in `.github/workflows/deploy.yml` runs when commits are pushed to `main`; it installs dependencies, prepares the resume file, builds the Vite app and deploys the `dist` directory.
 
-The fallback PDF is recreated from the resume details supplied for this portfolio. To use the exact official PDF, upload it to `public/Yash-Kesharwani-Resume.pdf` and commit it; the deployment workflow will prefer that file automatically.
+1. Edit the relevant files in GitHub, or clone the repository and edit them locally.
+2. Commit and push to `main`.
+3. Open the repository's **Actions** tab if you want to watch the build.
+4. After the workflow succeeds, refresh the live website. Cached browser content may take a little time to update.
 
-## GitHub Pages
+The Vite base path is configured for this repository as `/portfolio/`.
 
-Repository Pages source was set to **GitHub Actions**. The workflow is defined in `.github/workflows/deploy.yml`. It installs dependencies, generates the downloadable resume, builds the Vite app, and deploys the `dist` folder.
+## Can the hosting stay free?
 
-Expected site URL: **https://yashkesharwani559.github.io/portfolio/**
+GitHub Pages is currently offered at no additional charge for public repositories on GitHub Free, and it is suitable for this static personal portfolio. There is no paid server or database in this project. **No hosting provider can promise that a service will remain free forever**: future plans, terms, quotas or policies may change. To keep using the current free setup, keep the repository public, keep Pages configured to use GitHub Actions, and stay within GitHub's applicable usage policies and limits.
 
-The Vite base path is `/portfolio/`, matching the project repository. No paid hosting, database, or private API key is required.
+## Roll back a change
 
-If the first deployment asks for a Pages configuration, open **Repository Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**.
+Every update is recorded in Git history. The safest rollback is to **revert the specific commit**, which creates a new commit that undoes that change without deleting history:
 
-## Contact behavior
+1. Open the repository's **Commits** page.
+2. Open the commit you want to undo and choose **Revert** if GitHub offers that action; alternatively use Git locally.
+3. Push the revert commit to `main`. GitHub Actions will deploy the reverted version automatically.
 
-- The email button uses `mailto:`, so it opens the visitor's configured mail app.
-- The email-copy action uses the clipboard when permitted and falls back to opening an email.
-- LinkedIn messaging opens a LinkedIn compose URL. LinkedIn may require sign-in and the compose shortcut may be limited by LinkedIn's own account rules.
-- All social profiles and project repository links open in a new tab.
+From a local clone, the usual command is:
+
+```bash
+git revert <commit-sha>
+git push origin main
+```
+
+Use the exact commit SHA you want to undo. Avoid force-pushing or resetting the public `main` branch for a normal rollback.
+
+## Useful links
+
+- [Live portfolio](https://yashkesharwani559.github.io/portfolio/)
+- [Repository](https://github.com/yashkesharwani559/portfolio)
+- [GitHub Actions](https://github.com/yashkesharwani559/portfolio/actions)
+- [GitHub Pages settings](https://github.com/yashkesharwani559/portfolio/settings/pages)
+- [GitHub Pages documentation](https://docs.github.com/pages)
