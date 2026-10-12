@@ -1,0 +1,116 @@
+{
+  "name": "Yash Kesharwani",
+  "title": "Software Engineer I",
+  "location": "Pune, India",
+  "email": "yashkesharwani559@gmail.com",
+  "phone": "+91-7489967083",
+  "links": {
+    "linkedin": "https://www.linkedin.com/in/yash-kesharwani-coder/",
+    "linkedinMessage": "https://www.linkedin.com/messaging/compose/?recipient=yash-kesharwani-coder",
+    "github": "https://github.com/yashkesharwani559",
+    "leetcode": "https://leetcode.com/u/yashkesharwani559/",
+    "email": "mailto:yashkesharwani559@gmail.com"
+  },
+  "intro": "I build dependable software and help make the systems behind it more reliable. My work spans Java and Spring Boot, REST APIs, cloud tooling, and infrastructure automation.",
+  "summary": "Software Engineer I at Cognizant with experience in Linux infrastructure patching, CI/CD automation, backend APIs and full-stack development.",
+  "stats": [
+    { "value": "700+", "label": "LeetCode problems solved" },
+    { "value": "92%", "label": "Heart model accuracy reported in resume" },
+    { "value": "AWS", "label": "Developer Associate certified" }
+  ],
+  "skills": {
+    "Languages": ["Java", "Python", "SQL", "JavaScript"],
+    "Backend & frontend": ["Spring Boot", "Spring MVC", "Spring Security", "React.js", "Servlets & JSP", "Tailwind CSS", "REST APIs"],
+    "Data & messaging": ["MySQL", "MongoDB", "Kafka", "Redis"],
+    "Cloud & DevOps": ["AWS", "Azure", "Docker", "Kubernetes", "Terraform", "Ansible", "Jenkins", "CI/CD"],
+    "Engineering": ["System Design", "DSA", "OOP", "DBMS", "SDLC", "Microservices"]
+  },
+  "experience": [
+    {
+      "company": "Cognizant",
+      "role": "Software Engineer I",
+      "period": "Jul 2025 — Present",
+      "location": "Pune, India",
+      "points": [
+        "Automate Linux infrastructure patching using Azure DevOps, Ansible and Terraform.",
+        "Collaborate with global teams to deliver reliable deployments and resolve production issues.",
+        "Use Git-based workflows and CI/CD pipelines for controlled software delivery.",
+        "Create automated pipelines to install MDPL Collector and its prerequisites on servers."
+      ]
+    },
+    {
+      "company": "Numetry Technologies",
+      "role": "Software Developer Intern",
+      "period": "Feb 2025 — Jun 2025",
+      "location": "India",
+      "points": [
+        "Built Spring Boot REST APIs and React.js frontend applications.",
+        "Integrated MongoDB Atlas, Firebase and Cloudinary.",
+        "Worked in an Agile environment and managed version control with Git."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "ShareBite",
+      "subtitle": "Real-time food distribution platform",
+      "description": "A full-stack platform focused on food distribution, with secure authentication, REST APIs and a relational data layer.",
+      "stack": ["Java", "Spring Boot", "Spring Security", "React", "MySQL", "JPA", "AWS EC2", "AWS RDS"],
+      "category": "Full Stack",
+      "repository": "https://github.com/yashkesharwani559/ShareBite",
+      "accent": "green",
+      "symbol": "SB"
+    },
+    {
+      "name": "SocioGram",
+      "subtitle": "Social media web application",
+      "description": "A social platform developed with Java Servlets and JSP, using Apache Tomcat 9 during development.",
+      "stack": ["Java", "Servlets", "JSP", "Apache Tomcat 9"],
+      "category": "Backend",
+      "repository": "https://github.com/yashkesharwani559/Sociogram",
+      "accent": "violet",
+      "symbol": "SG"
+    },
+    {
+      "name": "Heart Attack Prediction",
+      "subtitle": "Machine learning model",
+      "description": "A machine-learning project exploring feature engineering, hyperparameter tuning, cross-validation and model evaluation. The resume reports 92% accuracy.",
+      "stack": ["Python", "Scikit-learn", "TensorFlow", "Pandas", "NumPy"],
+      "category": "Machine Learning",
+      "repository": "https://github.com/yashkesharwani559/Heart_Attack",
+      "accent": "blue",
+      "symbol": "ML"
+    },
+    {
+      "name": "AWS & DevOps Use Cases",
+      "subtitle": "Cloud and automation practice",
+      "description": "A collection of hands-on use cases maintained in GitHub. Visit the repository to explore the available examples and implementation details.",
+      "stack": ["AWS", "DevOps"],
+      "category": "Cloud & DevOps",
+      "repository": "https://github.com/yashkesharwani559/Use-cases-AWS_Devops",
+      "accent": "orange",
+      "symbol": "AWS"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Shri Ram Institute of Technology",
+      "degree": "B.Tech, Computer Science & Engineering",
+      "period": "Sep 2021 — Jun 2025",
+      "result": "CGPA 8.31"
+    },
+    {
+      "institution": "Model School of Excellence",
+      "degree": "Higher Secondary & Secondary Education",
+      "period": "Apr 2019 — Apr 2021",
+      "result": "Class 12: 95.2% · Class 10: 93%"
+    }
+  ],
+  "achievements": [
+    { "title": "AWS Certified Developer — Associate", "detail": "DVA-C02 certification" },
+    { "title": "GATE 2025", "detail": "Qualified · Computer Science" },
+    { "title": "700+ LeetCode problems", "detail": "Consistent DSA practice" },
+    { "title": "Java Gold Badge", "detail": "HackerRank" },
+    { "title": "Wipro TalentNext Java Full Stack", "detail": "98% score" }
+  ]
+}
