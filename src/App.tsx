@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Award, Check, Code2, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sun, Terminal, X, GitBranch, Cpu, Layers3, BriefcaseBusiness, Send, FileText, BrainCircuit } from 'lucide-react'
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Award, Check, Code2, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sun, Terminal, X, GitBranch, Cpu, Layers3, BriefcaseBusiness, Send, BrainCircuit } from 'lucide-react'
 import data from './data/portfolio.json'
 
 type Theme = 'dark' | 'light'
