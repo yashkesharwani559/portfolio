@@ -28,7 +28,7 @@ The fallback PDF is recreated from the resume details supplied for this portfoli
 
 ## GitHub Pages
 
-The workflow is defined in `.github/workflows/deploy.yml`. It installs dependencies, generates the downloadable resume, builds the Vite app, and deploys the `dist` folder.
+Repository Pages source was set to **GitHub Actions**. The workflow is defined in `.github/workflows/deploy.yml`. It installs dependencies, generates the downloadable resume, builds the Vite app, and deploys the `dist` folder.
 
 Expected site URL: **https://yashkesharwani559.github.io/portfolio/**
 
