@@ -15,7 +15,11 @@ function Linkedin({ size = 17 }: { size?: number }) {
 }
 
 function App() {
-  const [theme, setTheme] = useState<Theme>(() => localStorage.getItem('portfolio-theme') === 'light' ? 'light' : 'dark')
+  const [theme, setTheme] = useState<Theme>(() => {
+    const savedTheme = localStorage.getItem('portfolio-theme-override')
+    if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
+    return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+  })
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeFilter, setActiveFilter] = useState('All')
   const [copied, setCopied] = useState(false)
@@ -25,8 +29,26 @@ function App() {
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
-    localStorage.setItem('portfolio-theme', theme)
   }, [theme])
+
+  useEffect(() => {
+    const systemPreference = window.matchMedia('(prefers-color-scheme: light)')
+    const followSystemPreference = (event: MediaQueryListEvent) => {
+      const savedTheme = localStorage.getItem('portfolio-theme-override')
+      if (savedTheme !== 'light' && savedTheme !== 'dark') {
+        setTheme(event.matches ? 'light' : 'dark')
+      }
+    }
+
+    systemPreference.addEventListener('change', followSystemPreference)
+    return () => systemPreference.removeEventListener('change', followSystemPreference)
+  }, [])
+
+  const toggleTheme = () => {
+    const nextTheme: Theme = theme === 'dark' ? 'light' : 'dark'
+    localStorage.setItem('portfolio-theme-override', nextTheme)
+    setTheme(nextTheme)
+  }
 
   const copyEmail = async () => {
     try {
@@ -51,7 +73,7 @@ function App() {
           <a className="mobile-resume" href={resumeUrl} download><Download size={15} /> Resume</a>
         </nav>
         <div className="top-actions">
-          <button className="theme-toggle" onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')} aria-label="Toggle color theme" title="Toggle theme">{theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}</button>
+          <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle color theme" title="Toggle theme">{theme === 'dark' ? <Sun size={17} /> : <Moon size={17} />}</button>
           <a className="nav-cta" href="#contact">Let's talk <ArrowUpRight size={15} /></a>
           <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label={menuOpen ? 'Close navigation' : 'Open navigation'}>{menuOpen ? <X size={21} /> : <Menu size={21} />}</button>
         </div>
@@ -72,6 +94,12 @@ function App() {
           </div>
           <motion.div className="hero-visual" initial={{ opacity: 0, scale: .97, y: 14 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .7, delay: .18 }}>
             <div className="visual-topline"><span className="window-dots"><i /><i /><i /></span><span className="mono">profile.tsx</span><span className="visual-live"><span className="status-dot" /> ENGINEERING MODE</span></div>
+            <div className="visual-profile-avatar" role="img" aria-label="Demo profile avatar">
+              {!avatarFailed
+                ? <img key={theme} src={profileImage} alt="Demo profile avatar" onError={() => setAvatarFailed(true)} />
+                : <span className="avatar-fallback">YK</span>}
+              <span className="avatar-status" aria-hidden="true" />
+            </div>
             <div className="code-window">
               <div className="code-line"><span className="line-number">01</span><span className="code-purple">const</span>&nbsp;<span className="code-blue">engineer</span>&nbsp;= {'{'}</div>
               <div className="code-line indent"><span className="code-green">name</span>: <span className="code-yellow">'Yash Kesharwani'</span>,</div>
@@ -80,12 +108,7 @@ function App() {
               <div className="code-line indent double"><span className="code-yellow">'Backend systems'</span>,</div><div className="code-line indent double"><span className="code-yellow">'Cloud & automation'</span>,</div><div className="code-line indent double"><span className="code-yellow">'Clean code'</span></div>
               <div className="code-line indent">],</div><div className="code-line indent"><span className="code-green">learning</span>: <span className="code-purple">true</span>,</div><div className="code-line">{'}'}<span className="cursor">_</span></div>
             </div>
-            <div className="visual-footer"><div className="visual-footer-icon"><Terminal size={17} /></div><div><strong>Build · Automate · Improve</strong><span>Curious mind, engineering mindset.</span></div><div className="visual-profile-avatar" role="img" aria-label="Demo profile avatar">
-                {!avatarFailed
-                  ? <img key={theme} src={profileImage} alt="Demo profile avatar" onError={() => setAvatarFailed(true)} />
-                  : <span className="avatar-fallback">YK</span>}
-                <span className="avatar-status" aria-hidden="true" />
-              </div></div>
+            <div className="visual-footer"><div className="visual-footer-icon"><Terminal size={17} /></div><div><strong>Build · Automate · Improve</strong><span>Curious mind, engineering mindset.</span></div></div>
             <div className="floating-chip chip-java"><span className="chip-icon">J</span><span><strong>Java + Spring</strong><small>Backend engineering</small></span></div>
             <div className="floating-chip chip-cloud"><span className="chip-icon cloud-icon"><Layers3 size={17} /></span><span><strong>Cloud & DevOps</strong><small>Automation first</small></span></div>
           </motion.div>

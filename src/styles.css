@@ -60,3 +60,69 @@
  .footer-brand-block{grid-column:auto}
  .footer-nav-links{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
+
+
+/* Visible profile portrait: sits over the existing code card without changing the hero layout. */
+.visual-profile-avatar{
+  position:absolute;z-index:5;top:68px;right:14px;width:100px;height:100px;flex:0 0 100px;
+  border-radius:50%;padding:3px;margin:0;
+  background:linear-gradient(140deg,var(--blue),var(--purple) 52%,var(--accent));
+  box-shadow:0 0 0 5px color-mix(in srgb,var(--surface) 82%,transparent),0 10px 34px color-mix(in srgb,var(--blue) 25%,transparent);
+  transition:transform .28s ease,box-shadow .28s ease;
+}
+.visual-profile-avatar img,.avatar-fallback{
+  width:100%;height:100%;border-radius:50%;display:block;object-fit:cover;background:var(--surface2);
+}
+.avatar-fallback{display:grid;place-items:center;color:var(--accent);font-size:25px;font-weight:850;letter-spacing:-.4px}
+.avatar-status{position:absolute;width:14px;height:14px;border:3px solid var(--surface);right:4px;bottom:8px;background:#42d7a0;border-radius:50%}
+.visual-profile-avatar:hover{transform:translateY(-3px) scale(1.035);box-shadow:0 0 0 5px color-mix(in srgb,var(--surface) 80%,transparent),0 14px 42px color-mix(in srgb,var(--purple) 35%,transparent)}
+.code-window{padding-right:124px}
+
+/* Gentle color shifts and hover feedback; retains the established design and spacing. */
+.accent-text{
+  background:linear-gradient(100deg,var(--blue) 0%,var(--purple) 58%,var(--accent) 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.button,.nav-cta,.filter-pill,.project-card,.project-symbol,.skill-group,.education-card,.experience-card,.achievement-panel,.tech-tag,.skill-tags span,.footer-socials a{
+  transition:color .22s ease,background-color .22s ease,border-color .22s ease,box-shadow .22s ease,transform .22s ease,filter .22s ease;
+}
+.button-primary:hover,.nav-cta:hover{
+  filter:saturate(1.12);box-shadow:0 8px 26px color-mix(in srgb,var(--blue) 23%,transparent);
+}
+.button-secondary:hover,.button-quiet:hover{
+  background:linear-gradient(120deg,color-mix(in srgb,var(--blue) 10%,var(--surface)),color-mix(in srgb,var(--purple) 9%,var(--surface)));
+  box-shadow:0 7px 22px color-mix(in srgb,var(--purple) 10%,transparent);
+}
+.nav-links>a:hover{color:var(--blue);text-shadow:0 0 18px color-mix(in srgb,var(--blue) 22%,transparent)}
+.filter-pill:hover{background:color-mix(in srgb,var(--blue) 10%,var(--surface));box-shadow:0 4px 15px color-mix(in srgb,var(--blue) 10%,transparent)}
+.project-card:hover{
+  transform:translateY(-4px);
+  border-color:color-mix(in srgb,var(--project-accent) 60%,var(--line));
+  box-shadow:0 14px 34px color-mix(in srgb,var(--project-accent) 12%,transparent);
+}
+.project-card:hover .project-symbol{transform:rotate(0deg) scale(1.06);box-shadow:0 0 42px color-mix(in srgb,var(--project-accent) 26%,transparent)}
+.project-art-grid{transition:opacity .25s ease,background-size .3s ease}
+.project-card:hover .project-art-grid{opacity:.82;background-size:24px 24px}
+.skill-group:hover,.education-card:hover,.experience-card:hover,.achievement-panel:hover{
+  transform:translateY(-2px);border-color:color-mix(in srgb,var(--blue) 42%,var(--line));
+  box-shadow:0 10px 28px color-mix(in srgb,var(--blue) 8%,transparent);
+}
+.tech-tag:hover,.skill-tags span:hover{
+  color:var(--text);border-color:color-mix(in srgb,var(--purple) 52%,var(--line));
+  background:color-mix(in srgb,var(--purple) 10%,var(--surface2));transform:translateY(-1px);
+}
+.hero-socials a:hover,.project-link:hover,.all-repos a:hover,.text-link:hover{color:var(--blue)}
+.footer-socials a:hover{box-shadow:0 6px 18px color-mix(in srgb,var(--blue) 16%,transparent)}
+@media(max-width:760px){
+  .visual-profile-avatar{width:76px;height:76px;flex-basis:76px;top:54px;right:10px;padding:2px}
+  .code-window{padding-right:96px}
+  .avatar-status{width:12px;height:12px;bottom:5px;right:2px}
+}
+@media(max-width:420px){
+  .visual-profile-avatar{width:61px;height:61px;flex-basis:61px;top:51px;right:8px}
+  .code-window{padding-right:78px}
+  .avatar-fallback{font-size:18px}
+}
+@media(prefers-reduced-motion:reduce){
+  .visual-profile-avatar,.button,.nav-cta,.filter-pill,.project-card,.project-symbol,.skill-group,.education-card,.experience-card,.achievement-panel,.tech-tag,.skill-tags span,.footer-socials a{transition:none!important}
+}

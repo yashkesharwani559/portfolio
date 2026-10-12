@@ -1,6 +1,6 @@
 # Yash Kesharwani — Portfolio
 
-A responsive portfolio built with **Vite, React, TypeScript, Motion for React and Lucide**. The existing visual design uses a dark/light theme toggle, project cards, a career timeline, skills, achievements, social links, resume download and contact actions.
+A responsive portfolio built with **Vite, React, TypeScript, Motion for React and Lucide**. The existing visual design uses a dark/light theme toggle, project cards, a career timeline, skills, achievements, social links, resume download and contact actions. The default theme follows the device preference until a visitor manually selects a theme.
 
 **Live site:** https://yashkesharwani559.github.io/portfolio/  
 **Repository:** https://github.com/yashkesharwani559/portfolio
@@ -21,7 +21,8 @@ Most content changes do not require editing React components.
 | Demo profile avatar for dark mode | `public/profile-dark.svg` |
 | Demo profile avatar for light mode | `public/profile-light.svg` |
 | Footer wording, columns and links | Footer component in `src/App.tsx` |
-| Colors, spacing, responsive/mobile layout and theme styles | `src/styles.css` |
+| Colors, spacing, responsive/mobile layout, hover states and theme styles | `src/styles.css` |
+| System theme detection and manual theme toggle behavior | `src/App.tsx` |
 | Page structure, buttons, navigation and interactions | `src/App.tsx` |
 | Automatic build and deployment | `.github/workflows/deploy.yml` |
 
