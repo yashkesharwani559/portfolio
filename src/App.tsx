@@ -23,12 +23,18 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [activeFilter, setActiveFilter] = useState('All')
   const [copied, setCopied] = useState(false)
-  const [avatarFailed, setAvatarFailed] = useState(false)
+  const [avatarPhotoFailed, setAvatarPhotoFailed] = useState(false)
+  const [avatarPlaceholderFailed, setAvatarPlaceholderFailed] = useState(false)
   const categories = useMemo(() => ['All', ...Array.from(new Set(data.projects.map((project) => project.category)))], [])
   const filteredProjects: Project[] = activeFilter === 'All' ? data.projects : data.projects.filter((project) => project.category === activeFilter)
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme
+  }, [theme])
+
+  useEffect(() => {
+    setAvatarPhotoFailed(false)
+    setAvatarPlaceholderFailed(false)
   }, [theme])
 
   useEffect(() => {
@@ -61,7 +67,8 @@ function App() {
   }
   const closeMenu = () => setMenuOpen(false)
   const resumeUrl = import.meta.env.BASE_URL + 'Yash-Kesharwani-Resume.pdf'
-  const profileImage = import.meta.env.BASE_URL + (theme === 'dark' ? 'profile-dark.svg' : 'profile-light.svg')
+  const profileImage = import.meta.env.BASE_URL + (theme === 'dark' ? 'profile-dark.jpg' : 'profile-light.jpg')
+  const profileFallbackImage = import.meta.env.BASE_URL + (theme === 'dark' ? 'profile-dark.svg' : 'profile-light.svg')
 
   return (
     <div className="site-shell">
@@ -94,10 +101,12 @@ function App() {
           </div>
           <motion.div className="hero-visual" initial={{ opacity: 0, scale: .97, y: 14 }} animate={{ opacity: 1, scale: 1, y: 0 }} transition={{ duration: .7, delay: .18 }}>
             <div className="visual-topline"><span className="window-dots"><i /><i /><i /></span><span className="mono">profile.tsx</span><span className="visual-live"><span className="status-dot" /> ENGINEERING MODE</span></div>
-            <div className="visual-profile-avatar" role="img" aria-label="Demo profile avatar">
-              {!avatarFailed
-                ? <img key={theme} src={profileImage} alt="Demo profile avatar" onError={() => setAvatarFailed(true)} />
-                : <span className="avatar-fallback">YK</span>}
+            <div className="visual-profile-avatar" role="img" aria-label="Profile image">
+              {!avatarPhotoFailed
+                ? <img key={`photo-${theme}`} src={profileImage} alt={data.name + ' profile'} onError={() => setAvatarPhotoFailed(true)} />
+                : !avatarPlaceholderFailed
+                  ? <img key={`placeholder-${theme}`} src={profileFallbackImage} alt="Illustrated profile placeholder" onError={() => setAvatarPlaceholderFailed(true)} />
+                  : <span className="avatar-fallback">YK</span>}
               <span className="avatar-status" aria-hidden="true" />
             </div>
             <div className="code-window">

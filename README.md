@@ -18,17 +18,26 @@ Most content changes do not require editing React components.
 | Project names, descriptions, categories, tech stacks and GitHub URLs | `src/data/portfolio.json` |
 | Education, certifications and achievements | `src/data/portfolio.json` |
 | Project statistics / highlight cards | `src/data/portfolio.json` |
-| Demo profile avatar for dark mode | `public/profile-dark.svg` |
-| Demo profile avatar for light mode | `public/profile-light.svg` |
+| Your photo for dark mode (upload your own image) | `public/profile-dark.jpg` |
+| Your photo for light mode (upload your own image) | `public/profile-light.jpg` |
+| Default illustrated fallback for dark mode | `public/profile-dark.svg` |
+| Default illustrated fallback for light mode | `public/profile-light.svg` |
 | Footer wording, columns and links | Footer component in `src/App.tsx` |
 | Colors, spacing, responsive/mobile layout, hover states and theme styles | `src/styles.css` |
 | System theme detection and manual theme toggle behavior | `src/App.tsx` |
 | Page structure, buttons, navigation and interactions | `src/App.tsx` |
 | Automatic build and deployment | `.github/workflows/deploy.yml` |
 
-### Changing the profile image
+### Add your own picture to the home / hero section
 
-The home section currently uses two lightweight demo SVG avatars so the image changes when the site's dark/light theme changes. To use your own picture later, replace the relevant SVG with an image you own and update the `profileImage` assignment in `src/App.tsx` to point to the desired public file. A square 1:1 image works best. If an image fails to load, the UI displays the **YK** initials fallback.
+The hero image supports your own photo in each theme, and it falls back to the included illustrated avatar if a photo file is missing.
+
+1. In the repository, open the `public/` folder.
+2. Upload a square photo named **`profile-dark.jpg`** for dark mode.
+3. Upload a photo named **`profile-light.jpg`** for light mode. You can use the same photo twice if you prefer.
+4. Keep the filenames exactly as shown, commit the files, and wait for GitHub Actions to deploy.
+
+The website automatically selects the matching JPG when the visitor changes theme. Use a clear head-and-shoulders image cropped square (around 500 × 500 px or larger). If a JPG is missing or fails to load, the site uses `public/profile-dark.svg` or `public/profile-light.svg`; if that placeholder also fails, it displays the **YK** initials. You do not need to change the React code just to replace your photo.
 
 ### Updating your downloadable resume
 
