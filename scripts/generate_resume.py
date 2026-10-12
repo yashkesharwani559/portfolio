@@ -35,7 +35,7 @@ def section(title):
 
 doc = SimpleDocTemplate(str(OUT), pagesize=A4, rightMargin=15*mm, leftMargin=15*mm, topMargin=11*mm, bottomMargin=10*mm, title="Yash Kesharwani - Resume", author="Yash Kesharwani")
 story = [
-    Paragraph("YASH KESHAWANI", styles["Name"]),
+    Paragraph("YASH KESHARWANI", styles["Name"]),
     Paragraph("Software Engineer | Java | Spring Boot | REST APIs | AWS", styles["Role"]),
 ]
 contact_data = [[
@@ -84,7 +84,7 @@ story.append(Paragraph("Developed a full-stack application with secure authentic
 story.append(Paragraph("<b>Enhanced Heart Attack Prediction Model</b> <font color='#586477'>| Python, Scikit-learn, TensorFlow, Pandas, NumPy</font>", styles["BodyCompact"]))
 story.append(Paragraph("Developed a machine-learning model reporting 92% accuracy, applying feature engineering, hyperparameter tuning and cross-validation.", styles["BodyCompact"]))
 story.extend(section("Education"))
-story.append(Paragraph("<b>Shri Ram Institute of Technology</b> - B.Tech, Computer Science & Engineering | Sep 2021 - Jun 2025 | CGPA: 8.31", styles["BodyCompact"]))
+story.append(Paragraph("<b>Shri Ram Institute of Technology</b> - B.Tech, Computer Science &amp; Engineering | Sep 2021 - Jun 2025 | CGPA: 8.31", styles["BodyCompact"]))
 story.append(Paragraph("<b>Model School of Excellence</b> - Class 12: 95.2% | Class 10: 93% | Apr 2019 - Apr 2021", styles["BodyCompact"]))
 story.extend(section("Achievements"))
 story.append(Paragraph("AWS Certified Developer - Associate (DVA-C02)  |  GATE 2025 Qualified (CSE)  |  700+ LeetCode problems solved  |  HackerRank Java Gold Badge  |  Wipro TalentNext Java Full Stack - 98%", styles["BodyCompact"]))
