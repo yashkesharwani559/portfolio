@@ -33,8 +33,12 @@ jobs:
 
       - name: Prepare downloadable resume PDF
         run: |
+          # Honor the user's original uploaded file, whatever its uploaded filename.
+          if [ -f public/Yash_Kesharwani_Resume.pdf ] && [ ! -f public/Yash-Kesharwani-Resume.pdf ]; then
+            cp public/Yash_Kesharwani_Resume.pdf public/Yash-Kesharwani-Resume.pdf
+          fi
           if [ -f public/Yash-Kesharwani-Resume.pdf ]; then
-            echo "Using the resume PDF committed in public/."
+            echo "Using the official resume PDF committed in public/."
           else
             python -m pip install --upgrade pip
             python -m pip install reportlab
