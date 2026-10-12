@@ -21,10 +21,10 @@ npm run preview
 ## Update content in GitHub
 
 - Edit `src/data/portfolio.json` to update the introduction, profile URLs, skill lists, experience, projects, education and achievements.
-- The workflow generates `public/Yash-Kesharwani-Resume.pdf` using `scripts/generate_resume.py`. Update the experience, skills, projects and achievements in that script as well when the resume changes.
+- The workflow uses `public/Yash-Kesharwani-Resume.pdf` if you commit an official PDF there. If it is absent, it generates a downloadable resume from `scripts/generate_resume.py`. Update that script when resume details change.
 - Commit changes to `main`; GitHub Actions builds the Vite app and publishes it to GitHub Pages.
 
-The resume PDF is generated from the resume details supplied for this portfolio. To use a separately designed official PDF instead, replace the generated PDF in `public/` or update the generation process accordingly.
+The fallback PDF is recreated from the resume details supplied for this portfolio. To use the exact official PDF, upload it to `public/Yash-Kesharwani-Resume.pdf` and commit it; the deployment workflow will prefer that file automatically.
 
 ## GitHub Pages
 
