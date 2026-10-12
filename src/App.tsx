@@ -1,11 +1,18 @@
 import { useEffect, useMemo, useState } from 'react'
 import { motion } from 'motion/react'
-import { ArrowDownRight, ArrowRight, ArrowUpRight, Award, Check, Code2, Download, ExternalLink, Github, GraduationCap, Mail, MapPin, Menu, Moon, Sun, Terminal, X, Linkedin, GitBranch, Cpu, Layers3, BriefcaseBusiness, Sparkles, Send, FileText, BrainCircuit } from 'lucide-react'
+import { ArrowDownRight, ArrowRight, ArrowUpRight, Award, Check, Code2, Download, ExternalLink, GraduationCap, Mail, MapPin, Menu, Moon, Sun, Terminal, X, GitBranch, Cpu, Layers3, BriefcaseBusiness, Sparkles, Send, FileText, BrainCircuit } from 'lucide-react'
 import data from './data/portfolio.json'
 
 type Theme = 'dark' | 'light'
 type Project = (typeof data.projects)[number]
 const fadeUp = { hidden: { opacity: 0, y: 18 }, show: { opacity: 1, y: 0 } }
+
+function Github({ size = 17 }: { size?: number }) {
+  return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.75.5 12.23c0 5.18 3.3 9.57 7.87 11.12.58.11.79-.26.79-.57v-2.19c-3.2.71-3.87-1.4-3.87-1.4-.53-1.38-1.28-1.75-1.28-1.75-1.05-.73.08-.72.08-.72 1.16.08 1.77 1.22 1.77 1.22 1.03 1.81 2.7 1.29 3.36.99.1-.76.4-1.29.73-1.59-2.56-.3-5.25-1.31-5.25-5.83 0-1.29.45-2.34 1.19-3.16-.12-.3-.52-1.5.11-3.12 0 0 .97-.32 3.17 1.21a10.9 10.9 0 0 1 5.77 0C17.12 4.91 18.1 5.23 18.1 5.23c.63 1.62.23 2.82.11 3.12.74.82 1.18 1.87 1.18 3.16 0 4.53-2.7 5.53-5.27 5.82.41.37.78 1.08.78 2.18v3.25c0 .31.21.68.8.56 4.56-1.55 7.86-5.94 7.86-11.11C23.56 5.75 18.4.5 12 .5z" /></svg>
+}
+function Linkedin({ size = 17 }: { size?: number }) {
+  return <svg aria-hidden="true" width={size} height={size} viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 2H3.55C2.69 2 2 2.69 2 3.55v16.9c0 .86.69 1.55 1.55 1.55h16.9c.86 0 1.55-.69 1.55-1.55V3.55C22 2.69 21.31 2 20.45 2ZM8 19H5V9h3v10ZM6.5 7.7A1.75 1.75 0 1 1 6.5 4.2a1.75 1.75 0 0 1 0 3.5ZM19 19h-3v-4.87c0-1.16-.02-2.65-1.62-2.65-1.62 0-1.87 1.27-1.87 2.56V19h-3V9h2.88v1.37h.04c.4-.76 1.38-1.56 2.84-1.56 3.04 0 3.6 2 3.6 4.6V19Z" /></svg>
+}
 
 function App() {
   const [theme, setTheme] = useState<Theme>(() => localStorage.getItem('portfolio-theme') === 'light' ? 'light' : 'dark')
